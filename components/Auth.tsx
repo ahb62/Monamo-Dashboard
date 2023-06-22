@@ -34,7 +34,11 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
             },
             body: JSON.stringify({ "email": email, "password": pass }),
           });
-    
+          const data = await response.json();
+          const jwt = data.token
+          console.log(data)
+
+          localStorage.setItem('token', jwt);
           // Resto del código para manejar la respuesta de la solicitud
         } catch (error) {
           console.error(error);
