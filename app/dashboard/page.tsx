@@ -1,20 +1,55 @@
-import React from 'react';
-// import {useSession} from 'next-auth/react';
-// import { redirect } from 'next/navigation';
-// import { AuthOptions } from '../api/auth/[...nextauth]/route';
-const DashboardPage: React.FC = async ({}) => {
-    // const {data: session, status}= useSession({
-    //     required: true,
-    //     onUnauthenticated: () => {
-    //         return redirect(AuthOptions.pages.home)
-    //     }
-    // });
-    // console.log(session);
-    return (
-        <div>
-        <h1>Dashboard</h1>
-        </div>
-    );
-}
+"use client"
+import React, { useState, useEffect } from 'react';
+import {useRouter} from 'next/navigation';
 
-export default DashboardPage; 
+const DashboardPage: React.FC = () => {
+  const [token, setToken] = useState("");
+    const router = useRouter();
+  useEffect(() => {
+    const value = localStorage.getItem("token") || "";
+    setToken(value);
+  }, []);
+console.log(token);
+  const handleVerification = async () => {
+    try {
+      const verifyToken = localStorage.getItem('token');
+      console.log(verifyToken);
+      return JSON.stringify(verifyToken);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      const data = await handleVerification();
+      // Lógica de renderizado condicional
+      console.log(data);
+
+      // Redirección si no está logueado
+      if (!token) {
+        router.push('/');
+      } else {
+        router.push('/dashboard');
+      }
+    };
+
+    fetchData();
+  }, [token, router]);
+
+  return (
+    <div>
+      {token ? <div>
+          <h1>Is Logged </h1>
+           <button onClick={() => {localStorage.removeItem("token"); router.push("/")}}>
+                Logout
+            </button> 
+
+      </div> 
+      : <div>Not Logged</div> }
+
+    </div>
+  );
+};
+
+export default DashboardPage;

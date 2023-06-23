@@ -1,7 +1,7 @@
 "use client"
 import React, { Fragment, useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-
 interface AuthModalProps {
     title: string;
     isOpen: boolean;
@@ -9,13 +9,16 @@ interface AuthModalProps {
 }
 
 function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
-
+    
+    const [token, setToken] = useState("");
+    const router = useRouter();
+    
     const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
     const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
-      }
-      
+    }
+    
+    const [pass, setPass] = useState("");
       const handlePass = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPass(event.target.value);
       }
@@ -36,15 +39,44 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
           });
           const data = await response.json();
           const jwt = data.token
-          console.log(data)
-
           localStorage.setItem('token', jwt);
+          console.log("your token has been saved!");  
           // Resto del código para manejar la respuesta de la solicitud
+          setToken(jwt);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+
+      const handleVerification = async () => {
+        try {
+          const verifyToken = localStorage.getItem('token');
+          console.log(verifyToken);
+          return JSON.stringify(verifyToken);
         } catch (error) {
           console.error(error);
         }
       };
 
+
+    useEffect(() => {
+      const fetchData = async (): Promise<void> => {
+        const data = await handleVerification();
+        // Lógica de renderizado condicional
+        console.log(data);
+  
+        // Redirección si no está logueado
+        if (!token) {
+          router.push('/');
+        } else {
+          router.push('/dashboard');
+        }
+      };
+  
+      fetchData();
+    }, [token, router]);
+  
 
 
     return (
