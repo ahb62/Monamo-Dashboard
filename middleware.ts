@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+// import { NextResponse } from "next/server";
+// import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-    return NextResponse.redirect(new URL('/', request.url));
-}
+// export async function middleware(request: NextRequest) {
+//     return NextResponse.redirect(new URL('/', request.url));
+// }
 
-export const config = {
-    matcher:   "/dashboard/:path*" // Matched path will be captured as a parameter
-}
+// export const config = {
+//     matcher:   "/dashboard/:path*" // Matched path will be captured as a parameter
+// }

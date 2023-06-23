@@ -1,15 +1,15 @@
 import React from 'react';
-import {useSession} from 'next-auth/react';
-import { redirect } from 'next/navigation';
-import { AuthOptions } from '../api/auth/[...nextauth]/route';
+// import {useSession} from 'next-auth/react';
+// import { redirect } from 'next/navigation';
+// import { AuthOptions } from '../api/auth/[...nextauth]/route';
 const DashboardPage: React.FC = async ({}) => {
-    const {data: session, status}= useSession({
-        required: true,
-        onUnauthenticated: () => {
-            return redirect(AuthOptions.page.home)
-        }
-    });
-    console.log(session);
+    // const {data: session, status}= useSession({
+    //     required: true,
+    //     onUnauthenticated: () => {
+    //         return redirect(AuthOptions.pages.home)
+    //     }
+    // });
+    // console.log(session);
     return (
         <div>
         <h1>Dashboard</h1>
