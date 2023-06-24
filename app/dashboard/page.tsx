@@ -3,23 +3,18 @@ import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 import HeroSection from '@/components/dashboard/HeroSection';
 import handleVerification from '@/handlers/verification';
-
 const DashboardPage: React.FC = () => {
   const [token, setToken] = useState("");
-    const router = useRouter();
+  const router = useRouter();
   useEffect(() => {
     const value = localStorage.getItem("token") || "";
     setToken(value);
   }, []);
-console.log(token);
-
-
+  
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       const data = await handleVerification();
       // Lógica de renderizado condicional
-      console.log(data);
-
       // Redirección si no está logueado
       if (!token) {
         router.push('/');
@@ -27,7 +22,7 @@ console.log(token);
         router.push('/dashboard');
       }
     };
-
+    
     fetchData();
   }, [token, router]);
 
