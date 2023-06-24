@@ -107,36 +107,32 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
                 leaveTo="opacity-0 scale-95"
               >
 
-<div className="App">
-     <div className="w-full max-w-xs">
-  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-    <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-        Email
-      </label>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" value={email} onChange={handleEmail} type="text" placeholder="Username" />
-    </div>
-    <div className="mb-6">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-        Password
-      </label>
-      <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" value={pass} onChange={handlePass} type="password" placeholder="******************" />
-      <p className="text-red-500 text-xs italic">Please choose a password.</p>
-    </div>
-    <div className="flex items-center justify-between">
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-        Login
-      </button>
-      <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-        Forgot Password?
-      </a>
-    </div>
-  </form>
-  <p className="text-center text-gray-500 text-xs">
-    &copy;2023 Monamo Technology. All rights reserved.
-  </p>
-</div>
-    </div>
+<div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title my-3">Login</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Email Here"
+              value={email}
+              onChange={handleEmail}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <input
+              type="password"
+              placeholder="Enter Password"
+              value={pass}
+              onChange={handlePass}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="card-actions my-3 justify-end">
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
 
 
 
