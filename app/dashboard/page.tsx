@@ -39,12 +39,13 @@ console.log(token);
 
   return (
     <div>
-      {token ? <div>
+      
+      {token ? 
+      <div>
           <h1>Is Logged </h1>
-           <button onClick={() => {localStorage.removeItem("token"); router.push("/")}}>
-                Logout
-            </button> 
-
+          <button onClick={() => {localStorage.removeItem("token"); router.push("/")}}>
+            Logout
+          </button> 
       </div> 
       : <div>Not Logged</div> }
 
