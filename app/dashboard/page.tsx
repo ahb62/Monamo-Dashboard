@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 import HeroSection from '@/components/dashboard/HeroSection';
 
+
 const DashboardPage: React.FC = () => {
   const [token, setToken] = useState("");
     const router = useRouter();
@@ -45,6 +46,7 @@ console.log(token);
       <div>
 
           <HeroSection />
+          
 
       </div> 
       : <div>Not Logged</div> }
