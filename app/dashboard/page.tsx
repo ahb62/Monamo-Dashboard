@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
+import HeroSection from '@/components/HeroSection';
 
 const DashboardPage: React.FC = () => {
   const [token, setToken] = useState("");
@@ -39,10 +40,12 @@ console.log(token);
 
   return (
     <div>
-      
+
       {token ? 
       <div>
-          <h1>Is Logged </h1>
+
+          <HeroSection />
+
           <button onClick={() => {localStorage.removeItem("token"); router.push("/")}}>
             Logout
           </button> 
