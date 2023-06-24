@@ -2,6 +2,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
+import handleVerification from '@/handlers/verification';
 interface AuthModalProps {
     title: string;
     isOpen: boolean;
@@ -49,15 +50,7 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
     };
 
 
-      const handleVerification = async () => {
-        try {
-          const verifyToken = localStorage.getItem('token');
-          console.log(verifyToken);
-          return JSON.stringify(verifyToken);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+
 
 
     useEffect(() => {
