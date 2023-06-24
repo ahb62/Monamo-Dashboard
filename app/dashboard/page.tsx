@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 import HeroSection from '@/components/dashboard/HeroSection';
-
+import handleVerification from '@/handlers/verification';
 
 const DashboardPage: React.FC = () => {
   const [token, setToken] = useState("");
@@ -12,15 +12,7 @@ const DashboardPage: React.FC = () => {
     setToken(value);
   }, []);
 console.log(token);
-  const handleVerification = async () => {
-    try {
-      const verifyToken = localStorage.getItem('token');
-      console.log(verifyToken);
-      return JSON.stringify(verifyToken);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
