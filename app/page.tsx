@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import HeaderSection from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
+
+import LoginSection from '@/components/LoginSection';
 
 
 
@@ -8,7 +8,7 @@ const Page: any = () => {
   return(
     <div>
       
-      <HeroSection />
+      <LoginSection />
     </div>
   )
 }

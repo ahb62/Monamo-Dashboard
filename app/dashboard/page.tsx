@@ -46,9 +46,6 @@ console.log(token);
 
           <HeroSection />
 
-          <button onClick={() => {localStorage.removeItem("token"); router.push("/")}}>
-            Logout
-          </button> 
       </div> 
       : <div>Not Logged</div> }
 
