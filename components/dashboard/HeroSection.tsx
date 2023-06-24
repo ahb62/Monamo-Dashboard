@@ -1,14 +1,3 @@
-"use client"
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import AuthModal from './Auth'
-const navigation = [
-  { name: 'Monamo.io', href: '#', key: 1 },
-  { name: 'Monamo.io', href: '#', key: 2 },
-  { name: 'Monamo.io', href: '#', key: 3 },
-  { name: 'Monamo.io', href: '#', key: 4 },
-]
 
 export default function HeroSection() {
 
