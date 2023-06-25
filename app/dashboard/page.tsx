@@ -2,23 +2,28 @@
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 import HeroSection from '@/components/dashboard/HeroSection';
-import handleVerification from '@/handlers/verification';
+import gettingPokemons from '@/handlers/getPokemons';
+
 const DashboardPage: React.FC = () => {
-  const [token, setToken] = useState("");
   const router = useRouter();
+  const [token, setToken] = useState("");
+
+  const [pokemon, setPokemon] = useState([]);
+  const getPokemonData = async () => {
+    const response = await gettingPokemons();
+    const data = response.results.map((pokemon: any) => pokemon.name);
+    setPokemon(data);
+    console.log(pokemon);
+  };
+  
   useEffect(() => {
     const value = localStorage.getItem("token") || "";
     setToken(value);
-  }, []);
-  
-  useEffect(() => {
-    const fetchData = async (): Promise<void> => {
-      const data = await handleVerification();
-      // Lógica de renderizado condicional
-      // Redirección si no está logueado
+    const fetchData = async (): Promise<void> => {   
       if (!token) {
         router.push('/');
       } else {
+        getPokemonData();
         router.push('/dashboard');
       }
     };
@@ -26,13 +31,21 @@ const DashboardPage: React.FC = () => {
     fetchData();
   }, [token, router]);
 
+
+
+
+
+  
+
+
+
   return (
     <div>
 
       {token ? 
       <div>
 
-          <HeroSection />
+          <HeroSection  data={pokemon}/>
           
 
       </div> 
