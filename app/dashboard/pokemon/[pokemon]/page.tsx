@@ -1,31 +1,37 @@
 "use client"
 import React, {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation';
-import handleVerification from '@/handlers/verification'
+import getPokemonByName from '@/handlers/getPokemonByName';
 interface PokemonProps {
   name: string;
   url: string;
 }
+
 const Pokemon = ({params}: any) => {
   const {pokemon} = params;
- 
+
+  const [pokemonData, setPokemonData] = useState([]);
   const [token, setToken] = useState("");
-    const router = useRouter();
+  const router = useRouter();
+
+
+  const getPokemonData = async () => 
+  {
+  const response = await getPokemonByName(pokemon);
+  setPokemonData(response);
+  console.log(response);
+  };
+  
+  
     useEffect(() => {
       const value = localStorage.getItem("token") || "";
       setToken(value);
-    }, []);
-  
-    useEffect(() => {
       const fetchData = async (): Promise<void> => {
-        const data = await handleVerification();
-        // Lógica de renderizado condicional
-  
-        // Redirección si no está logueado
         if (!token) {
           router.push('/');
         } else {
-          router.push('/dashboard/[pokemon]');
+          getPokemonData();
+          router.push(`/dashboard/pokemon/${pokemon}`);
         }
       };
   
