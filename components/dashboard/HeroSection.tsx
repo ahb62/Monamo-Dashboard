@@ -1,15 +1,41 @@
+import Link from "next/link";
+import React, { useEffect } from "react";
 
-export default function HeroSection() {
+interface props {
+  data: any;
+}
+export default function HeroSection({data}: props) {
+const pokemons = data;
 
   return (
-<div className="hero min-h-screen bg-base-200">
-  <div className="hero-content text-center">
-    <div className="max-w-md">
-      <h1 className="text-5xl font-bold">Hello there</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button className="btn btn-primary">Get Started</button>
-    </div>
+<>
+<div className="container flex justify-center">
+
+
+  <div className="grid grid-cols-3 gap-6">
+{pokemons.map((element: any, index: number) =>  (
+
+  <div className="card w-64 bg-neutral shadow-xl m-6">
+          <div className="card-body">
+            <h2 className="card-title my-3">{element}</h2>
+            <Link href={`/dashboard/${index + 1}`}>
+          <figure>
+            <img
+              crossOrigin="anonymous"
+              width={100}
+              height={80}
+              src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${index + 1 }.svg`}
+              alt="Shoes"
+              />
+          </figure>
+          </Link>
+          </div>
   </div>
+      ))}
+      </div>
+
 </div>
+
+</>
   )
 }
