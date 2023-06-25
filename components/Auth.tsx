@@ -30,7 +30,7 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
         console.log(email, pass);
     
         try {
-          const url = "http://localhost:3001/auth/login";
+          const url = `${process.env.LOGIN_URL}`;
           const response = await fetch(url, {
             method: "POST",
             headers: {
