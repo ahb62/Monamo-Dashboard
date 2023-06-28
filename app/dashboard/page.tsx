@@ -13,7 +13,6 @@ const DashboardPage: React.FC = () => {
     const response = await gettingPokemons();
     const data = response.results.map((pokemon: any) => pokemon.name);
     setPokemon(data);
-    console.log(pokemon);
   };
   
   useEffect(() => {
@@ -41,6 +40,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <div>
+
 
       {token ? 
       <div>

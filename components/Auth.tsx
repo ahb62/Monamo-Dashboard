@@ -30,7 +30,7 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
         console.log(email, pass);
     
         try {
-          const url = "http://localhost:3001/auth/login";
+          const url = `http://localhost:3001/auth/login`;
           const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -40,10 +40,10 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
           });
           const data = await response.json();
           const jwt = data.token
-          localStorage.setItem('token', jwt);
-          console.log("your token has been saved!");  
-          // Resto del código para manejar la respuesta de la solicitud
           setToken(jwt);
+          localStorage.setItem('token', jwt);
+          // Resto del código para manejar la respuesta de la solicitud
+  
         } catch (error) {
           console.error(error);
         }
@@ -56,9 +56,7 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
     useEffect(() => {
       const fetchData = async (): Promise<void> => {
         const data = await handleVerification();
-        // Lógica de renderizado condicional
-        console.log(data);
-  
+        // Lógica de renderizado condicional  
         // Redirección si no está logueado
         if (!token) {
           router.push('/');
