@@ -30,11 +30,10 @@ function AuthModal({ title, isOpen, onClose }: AuthModalProps) {
         console.log(email, pass);
     
         try {
-<<<<<<< HEAD
+
           const url = `http://localhost:3001/auth/login`;
-=======
-          const url = `https://pokemonamo.up.railway.app/auth/login`;
->>>>>>> d8951aaf29328430d09859a2c2c29248dd4db4d0
+
+
           const response = await fetch(url, {
             method: "POST",
             headers: {

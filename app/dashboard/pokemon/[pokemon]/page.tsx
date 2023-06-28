@@ -2,10 +2,7 @@
 import React, {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation';
 import getPokemonByName from '@/handlers/getPokemonByName';
-<<<<<<< HEAD
 
-=======
->>>>>>> d8951aaf29328430d09859a2c2c29248dd4db4d0
 interface PokemonProps {
   name: string;
   url: string;
